@@ -1,0 +1,135 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f2f2f2;
+    font-family: "Gabarito", sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.grid {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    min-height: 90vh;
+
+    .titulo {
+        font-size: 30px;
+    }
+}
+
+.header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: clamp(10px, 3vw, 20px); /* Separacion entre logotipo y elementos de navegacion (nav) */
+
+    .logo {
+        font-size: clamp(30px, 5vw, 50px); /* Hacemos el tamaño del logo dinamico */
+    }
+
+    nav {
+        display: flex; /* Convertimos los elementoss nav a display flex*/
+        gap: clamp(10px, 3vw, 20px); /* Agregamos espaciado a los elementos nav - MEJOR MANERA para NO USAR MARGIN-RIGTH: ; */
+
+        a {
+            text-decoration: none;
+            color: #531cb3;
+            font-size: clamp(16px, 3vw, 20px);
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        & {
+            flex-direction: column; /* Colocamos el menu de "nav" debajo del logo*/
+        }
+    }
+}
+
+.main {
+    grid-column: 1 / span 2; /* span 2 = se expanda 2 columnas*/
+    background: #fff;
+    padding: 20px; /* Agregamos espacio enter contenido y el fondo (caja) */
+    color: #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 3vw, 20px);
+    align-items: flex-start; /* Movemos el boton a la izquierda y que no se expanda */
+
+    p {
+        line-height: 30px; /* Agregamos separacion al texto (interlineado) */
+    }
+
+    .boton {
+        display: inline-block;
+        padding: 15px;
+        background: #531cb3;
+        color: #fff;
+        border-radius: 3px;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 750px) {
+        & {
+            grid-column: 1 / -1;
+            align-items: stretch; /* Hacemos que el boton abarque el 100% al llegar a la medida de 750px para abajo */
+        }
+    }
+}
+
+.aside {
+    background: #000;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Centramos elementos de forma Horizontal */
+    align-items: center; /* Centramos elementos de forma Vertical */
+
+    @media screen and (max-width: 750px) {
+        & {
+            grid-column: 1 / -1;
+            min-height: 200px; /* Le damos una altura minima al aside */
+        }
+    }
+}
+
+.widgets {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Colocamos cada widget en una columna diferente con el tamaño de 1fr */
+    gap: 20px; /* Le damos espacio para que no invada la grid */
+
+    .widget {
+        background: #ccc;
+        min-height: 100px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.footer {
+    grid-column: 1 / -1;
+    padding: 40px 0; /* Agregamos espaciado arriba/abajo y izquierda/derecha */
+    text-align: center; /* Centramos los textos */
+    display: flex;
+    flex-direction: column;
+    gap: 10PX; /* Agregamos espacio entre el footer (titulo) y el copyright */
+    color: #929292;
+}
